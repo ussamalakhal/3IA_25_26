@@ -16,7 +16,7 @@ bool isPrimo(int _n);
  * @param int Numero da verificare
  * @return boolean true/false
  */
-scrivi il prototipo
+bool perfecto(int n1);
 /**
  * Verifica terna pitagorica, se n1^2+n2^2 = n3^2
  * @param int _n1 Primo valore
@@ -24,7 +24,7 @@ scrivi il prototipo
  * @param int _n3 Terzo valore
  * @return boolean true/false
  */
-scrivi il prototipo
+bool terna(int n1,int n2,int n3);
 
 // sezione MAIN PROGRAM
 int main(){
@@ -45,7 +45,6 @@ int main(){
             printf("%d -> Primo\n", valore);
     }
     printf("\n\n");
-    
     return(0);
 }
 
@@ -64,4 +63,29 @@ bool isPrimo(int _n){
         return(true);
     else
         return(false);
-} 
+}
+bool perfecto(int n1){
+    int cnt;
+    cnt=0;
+    for (int div = 1; div <= n1; div++) {
+        if (n1 % div == 0){
+            cnt += div;
+        }
+    }
+    if(cnt == (n1*2)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+bool terna(int n1,int n2,int n3) {
+    int mul1 = n1 * n1;
+    int mul2 = n2 * n2;
+    int mul3 = n3 * n3;
+    int som = mul1 + mul2;
+    if (som == mul3){
+        return true;
+    }else {
+        return false;
+    }
+}
