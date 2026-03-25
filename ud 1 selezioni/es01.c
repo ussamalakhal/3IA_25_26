@@ -68,6 +68,6 @@ bool isPrimo(int _n){
 bool isPerfect(int _n){
     int div;
     int somma;
-    // da ultimare...
+    // da ultimare........
     
 }

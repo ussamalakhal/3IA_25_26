@@ -19,6 +19,7 @@ bool isPrimo(int _n){
     else
         return(false);
 }
+
 bool isPerfect(int _n){
     int div;
     int somma;
@@ -37,6 +38,7 @@ bool isPerfect(int _n){
     else
         return(false);    
 }
+
 bool isTernaPitagorica(int _n1, int _n2, int _n3){
     if((_n1*_n1) + (_n2+_n2) == (_n3*_n3))
         return(true);
@@ -46,14 +48,129 @@ bool isTernaPitagorica(int _n1, int _n2, int _n3){
 
 int inputValoreRange(int _min, int _max){
     int valore;
+    char junk;
     do{
-        printf("inserisci il valore : ");
+        printf("Inserisci un valore: ");
         scanf("%d", &valore);
-    }while(valore < min || n > max)
-    return valore;
+        junk = getchar();
+    }while(valore <_min || valore>_max);    
+    return(valore);
 }
 
 int randomValoreRange(int _min, int _max){
-    srand(time(NULL))
-    
+    int random;
+    random = _min + rand()%(_max - _min + 1);
+    return(random);
 }
+
+int nextPrimo(int _val){
+    int nextP;
+    /* soluzione funzionante ma ottimizzabile 
+    bool primo;
+    int nextP;
+    int div;
+    nextP = _val;
+    do{
+        nextP = nextP + 1;
+        primo = true;
+        for(div=2; div<nextP; div++){
+            if(nextP%div == 0)
+                primo = false;
+        }
+    }while(primo == false);*/
+
+    //while(isPrimo(nextP) == false){
+    nextP = _val + 1;
+    while(!isPrimo(nextP)){
+        nextP = nextP + 1;
+    }
+
+    return(nextP);
+}
+int nextPrimo3(int _val) {
+    while (! isPrimo(++_val))
+        ;
+    return _val;
+}
+
+int prevPrimo(int _val){
+    int nextP;
+    nextP = _val;
+    do{
+        nextP = nextP - 1;
+    }while(!isPrimo(nextP));
+    return(nextP);
+}
+
+void visualizzaPrimi(int _val, int _n){
+    int cnt;
+    int num;
+
+    cnt = 1;
+    while(cnt <= _n){
+        num = randomValoreRange(1, 999);
+        if(isPrimo(num)){
+            printf("%d ", num);
+            cnt++;
+        }
+    }
+}
+
+void raddoppiaValore(int* _n){
+    int tmp;            // creo una variabile intera di supporto
+
+    printf("Addr ricevuto: %p\n", _n);
+
+    tmp = *_n;          // in tmp metto il contenuto della cella di memoria il cui indirizzo è un _n.
+    tmp = tmp * 2;      // raddoppio il valore contenuto in tmp.
+    *_n = tmp;          // nella cella di memoria all'indirizzo contenuto in _n metto il valore di tmp.
+
+    // equivalente a: *_n = (*_n)*2;
+}
+
+void calcolaAreaPerimetro(int _base, int _altezza, int* _area, int* _perimetro){
+    // creo variabili di appoggio per calcola area e perimetro.
+    int tmpArea;
+    int tmpPerimetro;
+
+    // eseguo i calcoli.
+    tmpArea = _base * _altezza;
+    tmpPerimetro = (_base+_altezza) * 2;
+
+    // assegno i valori calcolati nelle rispettive celle di memoria di cui conosci gli indirizzi.
+    *_area = tmpArea;
+    *_perimetro = tmpPerimetro;
+}
+
+void estraiCifra(int _num){
+    int r;
+    if(_num!=0){
+        r = _num%10;
+        estraiCifra(_num/10);
+        printf("%d ", r); 
+    }
+}
+
+void convertiBinario(int _n){
+    int r;
+    if(_n!=0){
+        r = _n%2;
+        convertiBinario(_n/2);
+        printf("%d ", r); 
+    }
+}
+
+bool SwapVariabili(int* _n, int* _n2)[
+    int n;
+    int n2;
+
+
+    if(_n > n_2){
+        _n = tmp;
+        _n=_n2;
+        tmp=_n;
+        return(true);
+    }else{
+        return(false);
+    }
+]
